@@ -18,4 +18,8 @@ public class LevelEntity : MonoBehaviour {
             transform.position += Vector3.right * levelSpeed * -1 * Time.deltaTime;
         }
 	}
+
+    public void EndLevel(int score) {
+        return;
+    }
 }

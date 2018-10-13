@@ -5,19 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     // keep track of where gravity should point - for in editor shenanigans
-    public bool isUp = true;
-    public bool isDown = false;
+    public LevelEntity levelEntity;
 
     public Transform rodTransform;
-    public float rotateSpeed = 300f;
-    public float closeDistance = float.Epsilon;
+    public float rotateSpeed = 100f;
+    public float closeDistance = 1f;
 
     private bool flipping = false;
 
     private Rigidbody2D rb;
+    private BoxCollider2D bc;
+    private float oldGravityScale;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
 	}
 
     void Update ()
@@ -25,45 +27,36 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Flip") && !flipping) {
             Flip();
         }
-        //else if (Input.GetButtonDown("Flip") && flipping) {
-        //    StopFlip();
-        //}
     }
 
     // FixedUpdate is called once per physics step
     void FixedUpdate () {
         if (flipping) {
-            // transform.RotateAround(rodTransform.position, Vector3.right, rotateSpeed * Time.fixedDeltaTime);
-            // transform.Rotate(Vector3.right * rotateSpeed * Time.fixedDeltaTime, Space.World);
-            rodTransform.Rotate(Vector3.right * rotateSpeed * Time.fixedDeltaTime, Space.World);
-            /*if (Mathf.Abs(rodTransform.rotation.eulerAngles.x) - 180 < float.Epsilon)
-           { // upside down
+            // rotate the rod
+            rodTransform.Rotate(new Vector3(rotateSpeed, 0, 0) * Time.fixedDeltaTime, Space.World);
+            if ( Mathf.Abs(rodTransform.rotation.eulerAngles.x) < closeDistance) {
+                // stop flipping
                 flipping = false;
-                rb.gravityScale = -1;
                 transform.SetParent(null);
+                rb.gravityScale = -oldGravityScale;
             }
-            else if (Mathf.Abs(rodTransform.rotation.eulerAngles.x) < float.Epsilon)
-            { // rightside up
-                flipping = false;
-                rb.gravityScale = 1;
-                transform.SetParent(null);
-            }*/
-            Debug.Log(rodTransform.rotation.eulerAngles.ToString());
-            if ( (new Vector3(0, 0, 0) - rodTransform.rotation.eulerAngles).sqrMagnitude < closeDistance) {
-                StopFlip();
-            }
+        }
+
+        // colliding with an obstacle
+        Collider2D[] results = new Collider2D[2];
+        ContactFilter2D cf = new ContactFilter2D();
+        cf.SetLayerMask(LayerMask.GetMask("Obstacle"));
+        if (bc.OverlapCollider(cf, results) > 0) {
+            levelEntity.active = false;
+            levelEntity.EndLevel(-1);
         }
 	}
 
     public void Flip () {
-        // flip the player from the top to the bottom
+        // flip the player from the top to the bottom or vice versa
         flipping = true;
+        oldGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
         transform.SetParent(rodTransform);
-    }
-
-    public void StopFlip() {
-        // just stop flipping altogether
-        flipping = false;
     }
 }

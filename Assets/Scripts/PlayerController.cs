@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
     public bool isDown = false;
 
     public Transform rodTransform;
-    public float rotateSpeed = 100f;
+    public float rotateSpeed = 300f;
     public float closeDistance = float.Epsilon;
 
     private bool flipping = false;

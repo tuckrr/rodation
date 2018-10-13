@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour {
     public bool isDown = false;
 
     public Transform rodTransform;
-    public float rotateSpeed = 90f;
+    public float rotateSpeed = 100f;
+    public float closeDistance = float.Epsilon;
 
     private bool flipping = false;
 
@@ -24,6 +25,9 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetButtonDown("Flip") && !flipping) {
             Flip();
         }
+        //else if (Input.GetButtonDown("Flip") && flipping) {
+        //    StopFlip();
+        //}
     }
 
     // FixedUpdate is called once per physics step
@@ -44,6 +48,10 @@ public class PlayerController : MonoBehaviour {
                 rb.gravityScale = 1;
                 transform.SetParent(null);
             }*/
+            Debug.Log(rodTransform.rotation.eulerAngles.ToString());
+            if ( (new Vector3(0, 0, 0) - rodTransform.rotation.eulerAngles).sqrMagnitude < closeDistance) {
+                StopFlip();
+            }
         }
 	}
 
@@ -52,5 +60,10 @@ public class PlayerController : MonoBehaviour {
         flipping = true;
         rb.gravityScale = 0;
         transform.SetParent(rodTransform);
+    }
+
+    public void StopFlip() {
+        // just stop flipping altogether
+        flipping = false;
     }
 }

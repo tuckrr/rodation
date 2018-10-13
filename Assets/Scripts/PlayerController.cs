@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
         if (flipping) {
             // transform.RotateAround(rodTransform.position, Vector3.right, rotateSpeed * Time.fixedDeltaTime);
             // transform.Rotate(Vector3.right * rotateSpeed * Time.fixedDeltaTime, Space.World);
-            rodTransform.Rotate(Vector3.right * rotateSpeed * Time.fixedDeltaTime, Space.World);
+            rodTransform.Rotate(Vector3.right * rotateSpeed * Time.smoothDeltaTime, Space.World);
             /*if (Mathf.Abs(rodTransform.rotation.eulerAngles.x) - 180 < float.Epsilon)
            { // upside down
                 flipping = false;

@@ -14,8 +14,8 @@ public class LevelEntity : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        while (active) {
-            transform.position += Vector3.right * levelSpeed * -1;
+        if (active) {
+            transform.position += Vector3.right * levelSpeed * -1 * Time.deltaTime;
         }
 	}
 }

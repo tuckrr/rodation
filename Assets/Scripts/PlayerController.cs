@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private BoxCollider2D bc;
     private float oldGravityScale;
+    private int score = 0;
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -58,5 +59,6 @@ public class PlayerController : MonoBehaviour {
         oldGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
         transform.SetParent(rodTransform);
+        score++;
     }
 }

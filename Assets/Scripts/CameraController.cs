@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
+    public PlayerController player;
 	// Use this for initialization
 	void Start () {
 		

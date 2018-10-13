@@ -386,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1584243902}
+  cameraMovementSize: 10
 --- !u!4 &500100166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4493261367242916, guid: 67ecf86b77332498185acdb2a11da717,

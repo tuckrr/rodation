@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
+        GetComponent<Animator>().speed = levelEntity.levelSpeed / 4;
 	}
 
     void Update ()

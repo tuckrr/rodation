@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour {
     public bool isUp = true;
     public bool isDown = false;
 
+    public Transform rodTransform;
+    public float rotateSpeed = 90f;
+
     private bool flipping = false;
 
     private Rigidbody2D rb;
@@ -18,19 +21,29 @@ public class PlayerController : MonoBehaviour {
 
     void Update ()
     {
-        if (Input.GetKeyDown("Flip") && !flipping) {
+        if (Input.GetButtonDown("Flip") && !flipping) {
             Flip();
         }
     }
 
     // FixedUpdate is called once per physics step
     void FixedUpdate () {
-        rb.gravityScale = 0;
-        if (isUp) { rb.gravityScale++; }
-        if (isDown) { rb.gravityScale--; }
-
         if (flipping) {
-
+            // transform.RotateAround(rodTransform.position, Vector3.right, rotateSpeed * Time.fixedDeltaTime);
+            // transform.Rotate(Vector3.right * rotateSpeed * Time.fixedDeltaTime, Space.World);
+            rodTransform.Rotate(Vector3.up * rotateSpeed * Time.fixedDeltaTime, Space.Self);
+            /*if (Mathf.Abs(rodTransform.rotation.eulerAngles.x) - 180 < float.Epsilon)
+           { // upside down
+                flipping = false;
+                rb.gravityScale = -1;
+                transform.SetParent(null);
+            }
+            else if (Mathf.Abs(rodTransform.rotation.eulerAngles.x) < float.Epsilon)
+            { // rightside up
+                flipping = false;
+                rb.gravityScale = 1;
+                transform.SetParent(null);
+            }*/
         }
 	}
 
@@ -38,6 +51,6 @@ public class PlayerController : MonoBehaviour {
         // flip the player from the top to the bottom
         flipping = true;
         rb.gravityScale = 0;
-
+        transform.SetParent(rodTransform);
     }
 }

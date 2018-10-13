@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    // keep track of where gravity should point
     public bool isUp = true;
     public bool isDown = false;
 
@@ -19,4 +20,8 @@ public class PlayerController : MonoBehaviour {
         if (isUp) { rb.gravityScale++; }
         if (isDown) { rb.gravityScale--; }
 	}
+
+    void Flip () {
+        // flip the player from the top to the bottom
+    }
 }

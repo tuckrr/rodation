@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LevelEntity : MonoBehaviour {
 
+    public float levelSpeed = 1;
+    public bool active = true;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +14,8 @@ public class LevelEntity : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        while (active) {
+            transform.position += Vector3.right * levelSpeed * -1;
+        }
 	}
 }

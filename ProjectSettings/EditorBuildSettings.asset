@@ -4,5 +4,38 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Game Jam.unity
+    guid: d1e4b29e93db6034b80763ea4a01b1a4
+  - enabled: 1
+    path: Assets/Scenes/level-01.unity
+    guid: c744cd2568b864cd4b97855e3ced6b0f
+  - enabled: 1
+    path: Assets/Scenes/level-02.unity
+    guid: 223893630a8844c019bf25de153017b5
+  - enabled: 1
+    path: Assets/Scenes/level-03.unity
+    guid: 37206d96ed04d43c1b8efa1a1390b32a
+  - enabled: 1
+    path: Assets/Scenes/level-04.unity
+    guid: 74a079111fcc34b79b1461507195f8d3
+  - enabled: 1
+    path: Assets/Scenes/level-05.unity
+    guid: 25a908aedc45f43ed990ff942fd76a9b
+  - enabled: 1
+    path: Assets/Scenes/level-06.unity
+    guid: 1abc9c7e69ba58540b4056d2a7b4b1f5
+  - enabled: 1
+    path: Assets/Scenes/level-07.unity
+    guid: 72f1865ed430f6b49a7f6fbb9618574c
+  - enabled: 1
+    path: Assets/Scenes/level-08.unity
+    guid: ce2e46476faf8484ea3ac9edb75cfeff
+  - enabled: 1
+    path: Assets/Scenes/level-09.unity
+    guid: 303c85b0775224df6b859b80359e496b
+  - enabled: 1
+    path: Assets/Scenes/level-11.unity
+    guid: 1146a4056187e487ebd1a5dcb405a0c4
   m_configObjects: {}

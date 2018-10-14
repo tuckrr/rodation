@@ -46,7 +46,6 @@ public class LevelEntity : MonoBehaviour {
         {
             transform.GetChild(i).gameObject.SetActive(false);
         }
-        win = true;
         TextMesh t = gameObject.AddComponent<TextMesh>();
         t.anchor = TextAnchor.MiddleCenter;
         t.transform.position = Camera.main.transform.position + new Vector3(0, 0, 3);
@@ -58,8 +57,7 @@ public class LevelEntity : MonoBehaviour {
             t.text = "You lost. Going back to main menu...";
 
         } else {
-
-
+            win = true;
             if (score <= gold)
             {
                 t.text = "You got a gold medal! Next level starting...";

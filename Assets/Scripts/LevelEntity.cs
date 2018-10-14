@@ -37,6 +37,11 @@ public class LevelEntity : MonoBehaviour {
                 }
             }
         }
+
+        if (GetComponent<TextMesh>() != null) {
+            TextMesh t = GetComponent<TextMesh>();
+            t.transform.position = Camera.main.transform.position + new Vector3(0, 0, 3);
+        }
 	}
 
     public void EndLevel(int score) {

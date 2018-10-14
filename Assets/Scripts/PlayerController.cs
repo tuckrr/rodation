@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour {
         }
         cf.SetLayerMask(LayerMask.GetMask("EndOfLevel"));
         if (bc.OverlapCollider(cf, results) > 0) {
+            levelEntity.active = false;
             levelEntity.EndLevel(score);
         }
 	}

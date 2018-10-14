@@ -273,6 +273,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4353761074255872, guid: e99854ace92a94f099d7a28ea212204b,
     type: 2}
   m_PrefabInternal: {fileID: 843164300}
+--- !u!114 &843164302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114386632676475382, guid: e99854ace92a94f099d7a28ea212204b,
+    type: 2}
+  m_PrefabInternal: {fileID: 843164300}
+  m_Script: {fileID: 11500000, guid: 641d435d401434f498de81abb71620e9, type: 3}
 --- !u!1001 &1308685331
 Prefab:
   m_ObjectHideFlags: 0
@@ -321,7 +327,7 @@ Prefab:
         type: 2}
       propertyPath: levelEntity
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 843164302}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26673dd1e2a44d7fa3b8f7425527eb0, type: 2}
   m_IsPrefabAsset: 0

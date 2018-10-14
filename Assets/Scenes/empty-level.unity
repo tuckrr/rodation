@@ -157,7 +157,7 @@ Prefab:
   m_IsPrefabAsset: 0
 --- !u!114 &331406384 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114336288874882022, guid: e99854ace92a94f099d7a28ea212204b,
+  m_CorrespondingSourceObject: {fileID: 114386632676475382, guid: e99854ace92a94f099d7a28ea212204b,
     type: 2}
   m_PrefabInternal: {fileID: 331406383}
   m_Script: {fileID: 11500000, guid: 641d435d401434f498de81abb71620e9, type: 3}
@@ -225,7 +225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1250623055
 Prefab:

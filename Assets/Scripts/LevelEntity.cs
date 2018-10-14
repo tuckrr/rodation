@@ -8,11 +8,13 @@ public class LevelEntity : MonoBehaviour {
     public int gold = 3;
     public int silver = 5;
     public int bronze = 7;
-
     public int levelNumber;
 
     public bool active = true;
+    public float endTimer = 5;
+    
 
+    private bool win = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -22,28 +24,45 @@ public class LevelEntity : MonoBehaviour {
 	void Update () {
         if (active) {
             transform.position += Vector3.right * levelSpeed * -1 * Time.deltaTime;
+        } else {
+            endTimer -= Time.deltaTime;
+            if (endTimer <= 0) {
+                if (win) {
+                    // next level
+                } else {
+                    // level select
+                }
+            }
         }
 	}
 
     public void EndLevel(int score) {
         if (score < 0)
         {
-            // fail, should restart the level
-
-        } else if (score <= gold)
-        {
-            // gold medal
-
-        } else if (score <= silver) {
-            // silver medal
-
-        } else if (score <= bronze) {
-            // bronze
+            // display a 'you lost' message
 
         } else {
-            // no medal
+            win = true;
+            TextMesh t = gameObject.AddComponent<TextMesh>();
+            t.anchor = TextAnchor.MiddleCenter;
+            t.transform.position = Camera.main.transform.position + new Vector3(0, 0, 3);
+            t.color = Color.black;
+            t.fontSize = 64;
+            t.characterSize = 0.12f;
+            if (score <= gold)
+            {
+                t.text = "You got a gold medal! Next level starting...";
+
+            } else if (score <= silver) {
+                t.text = "You got a silver medal! Next level starting...";
+
+            }
+            else if (score <= bronze) {
+                t.text = "You got a bronze medal! Next level starting...";
+            }
+            else {
+                t.text = "Next level starting...";
+            }
         }
-        // go to level select
-        return;
     }
 }

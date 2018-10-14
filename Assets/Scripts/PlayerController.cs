@@ -9,9 +9,11 @@ public class PlayerController : MonoBehaviour {
 
     public Transform rodTransform;
     public float rotateSpeed = 100f;
-    public float closeDistance = 1f;
+    public float closeDistance = 0.1f;
+    public float jumpSpeed = 8f;
 
-    private bool flipping = false;
+    public bool flipping = false;
+    private bool jumping = false;
 
     private Rigidbody2D rb;
     private BoxCollider2D bc;
@@ -26,8 +28,13 @@ public class PlayerController : MonoBehaviour {
 
     void Update ()
     {
-        if (Input.GetButtonDown("Flip") && !flipping) {
+        if (Input.GetButtonDown("Flip") && !flipping && !jumping) {
             Flip();
+        }
+        Debug.Log(rb.velocity.ToString());
+        if (Input.GetButtonDown("Jump") && !jumping && !flipping) {
+            Debug.Log("Jump!");
+            Jump();
         }
     }
 
@@ -44,6 +51,8 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        jumping = !(Mathf.Abs(rb.velocity.y) > float.Epsilon);
+
         // colliding with an obstacle
         Collider2D[] results = new Collider2D[2];
         ContactFilter2D cf = new ContactFilter2D();
@@ -51,6 +60,10 @@ public class PlayerController : MonoBehaviour {
         if (bc.OverlapCollider(cf, results) > 0) {
             levelEntity.active = false;
             levelEntity.EndLevel(-1);
+        }
+        cf.SetLayerMask(LayerMask.GetMask("EndOfLevel"));
+        if (bc.OverlapCollider(cf, results) > 0) {
+            levelEntity.EndLevel(score);
         }
 	}
 
@@ -61,5 +74,9 @@ public class PlayerController : MonoBehaviour {
         rb.gravityScale = 0;
         transform.SetParent(rodTransform);
         score++;
+    }
+
+    public void Jump () {
+        rb.velocity = Vector2.up * rb.gravityScale * jumpSpeed;
     }
 }

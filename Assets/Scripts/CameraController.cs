@@ -9,11 +9,13 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        transform.position = new Vector3(transform.position.x, player.transform.position.y * cameraMovementSize, transform.position.z);
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(transform.position.x, player.transform.position.y * cameraMovementSize, transform.position.z);
-	}
+        if (player.flipping) {
+            transform.position = new Vector3(transform.position.x, player.transform.position.y * cameraMovementSize, transform.position.z);
+        }
+    }
 }

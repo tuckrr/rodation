@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SoundEffectController : MonoBehaviour {
 
-    public GameObject player;
     public AudioClip clip1;
     public AudioClip clip2;
     public AudioClip clip3;
@@ -19,6 +18,7 @@ public class SoundEffectController : MonoBehaviour {
     {
         audioSrc = GetComponent<AudioSource>();
         randInt = new System.Random();
+        clips = new AudioClip[4];
         clips[0] = clip1;
         clips[1] = clip2;
         clips[2] = clip3;
@@ -34,7 +34,7 @@ public class SoundEffectController : MonoBehaviour {
 		
 	//}
 
-    void PlayEffect()
+    public void PlayEffect()
     {
         int nextClipIndex = randInt.Next(0, clips.Length);
         audioSrc.clip = clips[nextClipIndex];

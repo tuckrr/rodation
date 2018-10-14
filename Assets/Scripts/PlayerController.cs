@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     // keep track of where gravity should point - for in editor shenanigans
     public LevelEntity levelEntity;
 
+    public SoundEffectController sfx;
     public Transform rodTransform;
     public float rotateSpeed = 100f;
     public float closeDistance = 0.1f;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour {
 
     public void Flip () {
         // flip the player from the top to the bottom or vice versa
+        sfx.PlayEffect();
         flipping = true;
         oldGravityScale = rb.gravityScale;
         rb.gravityScale = 0;

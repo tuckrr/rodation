@@ -9,7 +9,6 @@ public class LevelEntity : MonoBehaviour {
     public int gold = 3;
     public int silver = 5;
     public int bronze = 7;
-    public int levelNumber;
 
     public bool active = true;
     public float endTimer = 3;

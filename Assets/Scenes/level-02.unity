@@ -278,6 +278,11 @@ Prefab:
     - target: {fileID: 114386632676475382, guid: e99854ace92a94f099d7a28ea212204b,
         type: 2}
       propertyPath: bronze
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114386632676475382, guid: e99854ace92a94f099d7a28ea212204b,
+        type: 2}
+      propertyPath: silver
       value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []

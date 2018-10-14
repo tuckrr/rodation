@@ -27,7 +27,10 @@ public class PlayerController : MonoBehaviour {
     void Update ()
     {
         if (Input.GetButtonDown("Flip") && !flipping) {
-            Flip();
+            if (!flipping) {
+                Flip();
+            }
+            score++;
         }
     }
 
@@ -66,7 +69,6 @@ public class PlayerController : MonoBehaviour {
         oldGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
         transform.SetParent(rodTransform);
-        score++;
     }
 
 }

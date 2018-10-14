@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelEntity : MonoBehaviour {
 
@@ -8,10 +9,9 @@ public class LevelEntity : MonoBehaviour {
     public int gold = 3;
     public int silver = 5;
     public int bronze = 7;
-    public int levelNumber;
 
     public bool active = true;
-    public float endTimer = 5;
+    public float endTimer = 3;
     
 
     private bool win = false;
@@ -28,27 +28,40 @@ public class LevelEntity : MonoBehaviour {
             endTimer -= Time.deltaTime;
             if (endTimer <= 0) {
                 if (win) {
-                    // next level
-                } else {
-                    // level select
+                    // go to next leevel
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+                else {
+                    // go to main menu
+                    SceneManager.LoadScene(0);
                 }
             }
+        }
+
+        if (GetComponent<TextMesh>() != null) {
+            TextMesh t = GetComponent<TextMesh>();
+            t.transform.position = Camera.main.transform.position + new Vector3(0, 0, 3);
         }
 	}
 
     public void EndLevel(int score) {
+        int c = transform.childCount;
+        for (int i = 0; i < c; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        TextMesh t = gameObject.AddComponent<TextMesh>();
+        t.anchor = TextAnchor.MiddleCenter;
+        t.transform.position = Camera.main.transform.position + new Vector3(0, 0, 3);
+        t.color = Color.black;
+        t.fontSize = 64;
+        t.characterSize = 0.12f;
         if (score < 0)
         {
-            // display a 'you lost' message
+            t.text = "You lost. Going back to main menu...";
 
         } else {
             win = true;
-            TextMesh t = gameObject.AddComponent<TextMesh>();
-            t.anchor = TextAnchor.MiddleCenter;
-            t.transform.position = Camera.main.transform.position + new Vector3(0, 0, 3);
-            t.color = Color.black;
-            t.fontSize = 64;
-            t.characterSize = 0.12f;
             if (score <= gold)
             {
                 t.text = "You got a gold medal! Next level starting...";
